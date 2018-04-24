@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.enliple.parsing.dao.DbMapper">
+ 
+ 
+    <!-- /* select dual */ -->
+    <select id="getDual" resultType="java.lang.String">
+        SELECT NOW() FROM DUAL
+    </select>
+
+
+
+
+
+
+	<!-- /* select Rule_target */ -->
+	<select id="getRule_target" resultType="java.lang.String">
+		SELECT NOW() FROM DUAL
+	</select>
+
+	<!-- /* select Rule_postword */ -->
+	<select id="getRule_postword" resultType="java.lang.String">
+		SELECT NOW() FROM DUAL
+	</select>
+
+	<!-- /* select Rule_preword */ -->
+	<select id="getRule_preword" resultType="java.lang.String">
+		SELECT NOW() FROM DUAL
+	</select>
+
+
+
+
+	<!-- /* select Rule_uri */ -->
+	<select id="getRule_uri" resultType="com.enliple.parsing.dto.RuleVO">
+		SELECT root_domain,
+		check_SSL, select_tag1, select_tag2, select_tag3, media_name,
+		pre_word, post_word, write_date, mod_date
+		FROM enliple.parsing_rule
+	</select>
+
+
+
+
+
+	<!-- /* select Uri_search */ -->
+	<select id="getUri_search" resultType="java.lang.Integer">
+		SELECT COUNT(*) FROM enliple.crawling WHERE URI = #{uri}
+	</select>
+
+	<!-- /* select Rule */ -->
+	<select id="getRule" resultType="com.enliple.parsing.dto.RuleVO">
+		SELECT root_domain,
+		check_SSL,
+		select_tag1, select_tag2, select_tag3, media_name,
+		pre_word, post_word,
+		write_date, mod_date
+		FROM enliple.parsing_rule WHERE root_domain = #{root_domain}
+	</select>
+
+
+	<!-- /* insert Parsing_result */ -->
+	<insert id="insertParsing_result" parameterType="com.enliple.parsing.dto.CrawlingResultVO">
+		INSERT INTO enliple.crawling(
+		URI
+		,content
+		,title
+		,category
+		,hashtag
+		,age
+		,sex
+		,`like`
+		,unlike
+		,`read`
+		,created_at
+		,updated_at
+		,media_name
+		,wordcount
+		) VALUES (
+		#{uri}
+		,#{content}
+		,#{title}
+		,#{category}
+		,#{hashtag}
+		,#{age}
+		,#{sex}
+		,#{like}
+		,#{unlike}
+		,"N"
+		,NOW()
+		,NOW()
+		,#{media_name}
+		,#{wordcount}
+		)
+	</insert>
+
+	<!-- /* insert Parsing_rule */ -->
+	<insert id="insertParsing_rule" parameterType="com.enliple.parsing.dto.RuleVO">
+		INSERT INTO enliple.parsing_rule(
+		root_domain
+		,check_SSL
+		,select_tag1
+		,select_tag2
+		,select_tag3
+		,media_name
+		,pre_word
+		,post_word
+		,write_date
+		,mod_date
+		) VALUES (
+		#{root_domain}
+		,#{check_SSL}
+		,#{select_tag1}
+		,#{select_tag2}
+		,#{select_tag3}
+		,#{media_name}
+		,#{pre_word}
+		,#{post_word}
+		,NOW()
+		,NOW()
+		)
+	</insert>
+
+	<!-- /* delete Parsing_rule */ -->
+<!-- 	<delete id="insertParsing_rule" parameterType="" statementType="PREPARED">
+		DELETE FROM test.parsing_rule
+		WHERE root_domain = #{root_domain}
+	</delete>	
+ -->
+
+    
+ 
+</mapper>
+
+

@@ -1,0 +1,41 @@
+package com.enliple.parsing.dao;
+
+import com.enliple.parsing.dto.CrawlingResultVO;
+import com.enliple.parsing.dto.RuleVO;
+
+public interface DbMapper {
+    
+	/* DB Select  */
+    public String getDual() throws Exception;
+
+    /* parsing Rule_target Select  */
+    public String getRule_target() throws Exception;
+    
+    /* parsing Rule_postword Select  */
+    public String getRule_postword() throws Exception;
+    
+    /* parsing Rule_preword Select  */
+    public String getRule_preword() throws Exception;
+    
+    
+    
+    /* select Rule_uri Select  */
+    public RuleVO getRule_uri() throws Exception;
+    
+    /* select Uri_search uri를 가지고 크롤링 이력을 확인한다.  */
+    public int getUri_search(String uri) throws Exception;
+    
+    /* select Rule 룰을 루트도메인을 기준으로 셀렉트 한다. */
+    public RuleVO getRule(String root_domain) throws Exception;
+    
+    
+    
+    /* insert Parsing_result */
+    public void insertParsing_result(CrawlingResultVO c_result) throws Exception; 
+    
+    /* insert Parsing_rule */
+    public void insertParsing_rule(RuleVO c_rule) throws Exception;
+    
+}
+
+

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.enliple.parsing.dao.DbMapper">
+ 
+ 
+    <!-- /* select dual */ -->
+    <select id="getDual" resultType="java.lang.String">
+        SELECT NOW() FROM DUAL
+    </select>
+
+	<!-- /* select Uri_search */ -->
+	<select id="getUri_search" resultType="java.lang.Integer">
+		SELECT COUNT(*) FROM enliple.crawling WHERE URI = #{uri}
+	</select>
+
+	<!-- /* select Rule */ -->
+	<select id="getRule" resultType="com.enliple.parsing.dto.RuleVO">
+		SELECT 
+		A.MEDIA_ID AS media_name,
+		A.MAIN_DOMAIN AS root_domain,
+		A.PLTFOM_TP_CODE AS pltfom_tp_code,
+		A.PRTCL_TP_CODE AS check_SSL,
+		A.RPT_BDT_TAG AS select_tag1
+		FROM
+		COT_DOMAIN_MNG_INFO A, 
+		(SELECT	MEDIA_ID, MAIN_DOMAIN FROM COT_DOMAIN_INFO WHERE COT_DOMAIN_INFO.MAIN_DOMAIN = #{root_domain} AND COT_DOMAIN_INFO.DOMAIN_USE_YN ="Y") B
+		WHERE 1=1 AND A.MEDIA_ID = B.MEDIA_ID AND A.MAIN_DOMAIN = B.MAIN_DOMAIN
+	</select>
+ 
+</mapper>
+
+
