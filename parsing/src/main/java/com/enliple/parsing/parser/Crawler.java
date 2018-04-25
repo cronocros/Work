@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 public class Crawler {
 
 	public String getCurrentData() {
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
 		return sdf.format(new Date());
 	}
 	
@@ -178,8 +178,6 @@ public class Crawler {
 		} 
 		return content;
 	}
-	
-	
 	
 	
 	

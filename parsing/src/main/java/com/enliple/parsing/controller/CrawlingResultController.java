@@ -45,14 +45,14 @@ public class CrawlingResultController {
 			reprocessing = crawlingService.findbyUri(uri);
 
 			if (reprocessing.getReadCheck() == 3) {
-				result = "수집된 데이터에 문제가 있어 처리하지 못하였습니다. 다시 크롤링을 수행하십시오.";
+				result = "수집된 데이터에 문제가 있어 분석하지 못하였습니다. 담당자에게 문의 또는 크롤링을 재실행하십시오.";
 			} else if (reprocessing.getReadCheck() == 1) {
 				crawlingService.updateReadcount(reprocessing);
 				System.out.println("***** Update 하였습니다.   ReadCheck 번호:" + reprocessing.getReadCheck());
-				result = "정상적으로 재처리를 수행하였습니다. 기사확인에서 확인하십시오";
+				result = "분석 재처리를 수행하였습니다. 잠시후 기사를 다시 확인하시기바랍니다.";
 			} else {
 				System.out.println("***** Update 할수 없습니다.   ReadCheck 번호:" + reprocessing.getReadCheck());
-				result = "아직 처리되지 않은 기사입니다. 잠시후에 다시 시도하십시오";
+				result = "아직 분석이 완료되지 않은 기사입니다. 잠시후에 다시 시도하십시오";
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -70,7 +70,7 @@ public class CrawlingResultController {
 			remove = crawlingService.findbyUri(uri);
 			if (remove != null) {
 				crawlingService.remove(uri);
-				result = "정상적으로 수집된 기사를 삭제하였습니다." + remove.getUri();
+				result = "정상적으로 수집된 기사를 삭제하였습니다. 기사는 삭제되었으나 분석된 결과는 남아있습니다." + remove.getUri();
 				System.out.println("***** 정상적으로 수집된 기사를 삭제하였습니다. uri : " + remove.getUri());
 			} else {
 				result = "해당 주소로 수집된 기사가 없어서 삭제 할 수 없습니다. uri : " + uri;
