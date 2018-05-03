@@ -19,7 +19,7 @@ public class LogDomain implements Serializable {
 	private String uri;         // URI
 	
 	private int status;
-	private String rootdomain;
+	private String rootDomain;
 	
 	/** Log & Date **/
 	private Date regDate;

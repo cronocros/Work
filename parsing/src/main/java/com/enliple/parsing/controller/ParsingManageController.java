@@ -102,7 +102,7 @@ public class ParsingManageController {
 				if (c_rule == null) {
 					logResult.setUri(uri);
 					logResult.setStatus(9);
-					logResult.setRootdomain(root_domain);
+					logResult.setRootDomain(root_domain);
 					logResult.setModDate(cl.getTime());
 					logresultService.upsert(logResult);
 					System.out.println("****** URI에 대한 수집 규칙이 없습니다.. :" + root_domain);
@@ -132,7 +132,7 @@ public class ParsingManageController {
 								crawlingService.update(crawlingResult);
 								logResult.setUri(uri);
 								logResult.setStatus(crawlingResult.getReadCheck());
-								logResult.setRootdomain(root_domain);
+								logResult.setRootDomain(root_domain);
 								logResult.setModDate(cl.getTime());
 								logresultService.upsert(logResult);
 								System.out.println("############ MongoDB Update Sucess ############");
@@ -141,7 +141,7 @@ public class ParsingManageController {
 								crawlingService.insert(crawlingResult);
 								logResult.setUri(uri);
 								logResult.setStatus(crawlingResult.getReadCheck());
-								logResult.setRootdomain(root_domain);
+								logResult.setRootDomain(root_domain);
 								logResult.setModDate(cl.getTime());
 								logresultService.upsert(logResult);
 								System.out.println("############ MongoDB Insert Sucess ############");
@@ -152,7 +152,7 @@ public class ParsingManageController {
 							crawlingService.upsert(crawlingResult);
 							logResult.setUri(uri);
 							logResult.setStatus(Integer.parseInt(parsing.get(0)));
-							logResult.setRootdomain(root_domain);
+							logResult.setRootDomain(root_domain);
 							logResult.setModDate(cl.getTime());
 							logresultService.upsert(logResult);
 						}
@@ -160,7 +160,7 @@ public class ParsingManageController {
 						e.printStackTrace();
 						logResult.setUri(uri);
 						logResult.setStatus(9);
-						logResult.setRootdomain(root_domain);
+						logResult.setRootDomain(root_domain);
 						logResult.setModDate(cl.getTime());
 						logresultService.upsert(logResult);
 						System.out.println("############ MongoDB Insert Fail ############");
@@ -174,7 +174,7 @@ public class ParsingManageController {
 				}
 			}
 		} catch (ClientAbortException e) {
-
+			System.out.println("****** client Aboart Exception.  ****** ");
 		} catch (DuplicateKeyException e) {
 			System.out.println("****** Processing or already processed.  ****** ");
 		} finally {
