@@ -18,6 +18,8 @@ public class AnalysisResultDomain implements Serializable {
 	
 	@NotNull
 	private String uri;
+	private String rootDomain;
+	private String title;
 	private int wordCount;
 	private int likeCode;
 	
@@ -29,6 +31,9 @@ public class AnalysisResultDomain implements Serializable {
 	private List<AnalysisClassificationsDomain> classifications;
 	private List<AnalysisKeywordsDomain> keywords;
 	private List<AnalysisKeywords_freqDomain> keywords_freq;
+	private List<AnalysisKeywords_complexDomain> keywords_complex;
+	private List<AnalysisKeywords_freq_complexDomain> keywords_freq_complex;
+	private List<AnalysisKeywords_sumDomain> keywords_sum;
 	private List<AnalysisSentencesDomain> sentences;
 	
 	
